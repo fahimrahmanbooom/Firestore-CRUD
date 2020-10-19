@@ -50,18 +50,18 @@ class ViewController: UIViewController {
     @IBAction func readButtonAction(_ sender: UIButton) {
         
         // reading all data from a document
-        //        db.collection("Star Wars").document("1").getDocument { (document, error) in
+        //                db.collection("Star Wars").document("1").getDocument { (document, error) in
         //
-        //            if let error = error {
-        //                print(error)
-        //            }
-        //            else {
-        //                if document!.exists == true && document != nil {
+        //                    if let error = error {
+        //                        print(error)
+        //                    }
+        //                    else {
+        //                        if document!.exists == true && document != nil {
         //
-        //                    print(document!.data()!)
+        //                            print(document!.data()!)
+        //                        }
+        //                    }
         //                }
-        //            }
-        //        }
         
         // reading an specific data from a document
         db.collection("Star Wars").document("1").getDocument() { (document, error) in
@@ -83,6 +83,7 @@ class ViewController: UIViewController {
     // update
     @IBAction func updateButtonAction(_ sender: UIButton) {
         
+        // update all values of a document with new data
         let document = db.collection("Star Wars").document("1")
         
         document.setData([
@@ -100,6 +101,19 @@ class ViewController: UIViewController {
                 print("Successfully Created with id \(document.documentID)")
             }
         }
+        
+        
+        // update single values of a document with new data
+        
+//        db.collection("Star Wars").document("1").updateData(["Grandfather": "Deleted"]) { (error) in
+//
+//            if let error = error {
+//                print(error)
+//            }
+//            else {
+//                print("Successfully Deleted")
+//            }
+//        }
     }
     
     
@@ -109,19 +123,7 @@ class ViewController: UIViewController {
     @IBAction func deleteButtonAction(_ sender: UIButton) {
         
         // delete the whole document
-        db.collection("Star Wars").document("1").delete() { (error) in
-            
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("Successfully Deleted")
-            }
-        }
-        
-        
-        // delete the field inside a document
-        //        db.collection("Star Wars").document("1").updateData(["Grandfather": FieldValue.delete()]) { (error) in
+        //        db.collection("Star Wars").document("1").delete() { (error) in
         //
         //            if let error = error {
         //                print(error)
@@ -130,5 +132,17 @@ class ViewController: UIViewController {
         //                print("Successfully Deleted")
         //            }
         //        }
+        
+        
+        // delete the field inside a document
+        db.collection("Star Wars").document("1").updateData(["Grandfather": FieldValue.delete()]) { (error) in
+            
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("Successfully Deleted")
+            }
+        }
     }
 }
